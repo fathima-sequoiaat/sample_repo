@@ -1,0 +1,127 @@
+{
+  "version": 22,
+  "study_id": "SUMMIT",
+  "type": "CLINICAL_OVERRIDE",
+  "title": "Clinical Override (only SCRMS)",
+  "description": "Clinical Override Workflow - Operational eCRF",
+  "integrators": [
+    "UCL"
+  ],
+  "external_version": "",
+  "show_all_sections_one_page": false,
+  "create_on_consent": false,
+  "sections": [
+    {
+      "name": "Clinical Override Workflow",
+      "description": "",
+      "display_rules": null,
+      "api_name": "clinical_override",
+      "input": {
+        "field_groups": [
+          {
+            "label": "Date of assessment",
+            "help_text": "",
+            "fields": [
+              {
+                "label": "",
+                "type": "DATETIME",
+                "api_name": "clinical_override_date_of_assessment",
+                "display_rules": null,
+                "enum_options": null,
+                "system_populated": true,
+                "var": "CLNOVDAT"
+              }
+            ],
+            "display_rules": null,
+            "allow_dynamic_rows": false,
+            "display_as_grid": false,
+            "display_fields_one_per_page": false
+          },
+          {
+            "label": "Please indicate the procedure that should be skipped",
+            "help_text": "No new results letters will be triggered as a result of this change, please ensure ad hoc letters updating participant and GP have been sent if necessary",
+            "fields": [
+              {
+                "label": "",
+                "type": "TEXT",
+                "api_name": "clinical_override_procedure_type",
+                "display_rules": null,
+                "enum_options": null,
+                "system_populated": true,
+                "var": "CLNOPROC"
+              }
+            ],
+            "display_rules": null,
+            "allow_dynamic_rows": false,
+            "display_as_grid": false,
+            "display_fields_one_per_page": false
+          },
+          {
+            "label": "Reason for skipping the procedure",
+            "help_text": "",
+            "fields": [
+              {
+                "label": "",
+                "type": "ENUM",
+                "api_name": "clinical_override_reason",
+                "display_rules": null,
+                "enum_options": [
+                  {
+                    "label": "Imaging external to study reviews, finding confirmed as stable",
+                    "value": "IMAGING_EXTERNAL_TO_STUDY_REVIEWS_FINDING_CONFIRMED_AS_STABLE"
+                  },
+                  {
+                    "label": "Second radiologist opinion/QA outcome",
+                    "value": "SECOND_RADIOLOGIST_OPINION_QA_OUTCOME"
+                  },
+                  {
+                    "label": "Remains under MDT surveillance",
+                    "value": "REMAINS_UNDER_MDT_SURVEILLANCE"
+                  },
+                  {
+                    "label": "Significant delay to study procedure",
+                    "value": "SIGNIFICANT_DELAY_TO_STUDY_PROCEDURE"
+                  },
+                  {
+                    "label": "Other",
+                    "value": "OTHER"
+                  }
+                ],
+                "var": "CLNOREAS"
+              }
+            ],
+            "display_rules": null,
+            "allow_dynamic_rows": false,
+            "display_as_grid": false,
+            "display_fields_one_per_page": false
+          },
+          {
+            "label": "Please state.",
+            "help_text": "Don't include any personally identifiable information",
+            "fields": [
+              {
+                "label": "",
+                "type": "TEXT",
+                "api_name": "clinical_override_reason_other",
+                "display_rules": null,
+                "enum_options": null,
+                "var": "CLNOROTH"
+              }
+            ],
+            "display_rules": [
+              {
+                "type": "SHOW",
+                "source_field_api_name": "clinical_override_reason",
+                "operator": "EQUAL",
+                "value": "OTHER"
+              }
+            ],
+            "allow_dynamic_rows": false,
+            "display_as_grid": false,
+            "display_fields_one_per_page": false
+          }
+        ]
+      }
+    }
+  ]
+}
